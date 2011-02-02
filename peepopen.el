@@ -69,8 +69,9 @@
         (string-join " " *textmate-project-roots* )
         ")")))
     (shell-command-to-string
-     (format "open -a PeepOpen '%s'"
-             (expand-file-name root)))))
+     (format "open 'peepopen://%s?editor=%s'"
+             (expand-file-name root)
+             (invocation-name)))))
 
 ;;;###autoload
 (defun peepopen-bind-keys ()
