@@ -76,8 +76,8 @@
 ;;;###autoload
 (defun peepopen-bind-keys ()
   (cond ((featurep 'aquamacs) (peepopen-bind-aquamacs-keys))
-	((featurep 'mac-carbon) (peepopen-bind-carbon-keys))
-	((featurep 'ns) (peepopen-bind-ns-keys))))
+        ((featurep 'mac-carbon) (peepopen-bind-carbon-keys))
+        ((featurep 'ns) (peepopen-bind-ns-keys))))
 
 (defun peepopen-bind-aquamacs-keys ()
   ;; Need `osx-key-mode-map' to override
