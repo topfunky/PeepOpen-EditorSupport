@@ -7,6 +7,12 @@ or document in BBEdit.
 
 	mkdir -p ~/Library/Application\ Support/BBEdit/Scripts
 	cp PeepOpen.scpt ~/Library/Application\ Support/BBEdit/Scripts/.
+	
+To add a shortcut key:
+
+	Window -> Palettes -> Scripts
+	Select PeepOpen and click Set Key ...
+	Enter a shortcut key combination (recommend Command + Option + T)
 
 ## Credit
 
