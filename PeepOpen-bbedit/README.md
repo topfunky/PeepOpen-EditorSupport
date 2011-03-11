@@ -6,13 +6,19 @@ or document in BBEdit.
 ## Installation
 
 	mkdir -p ~/Library/Application\ Support/BBEdit/Scripts
-	cp PeepOpen.scpt ~/Library/Application\ Support/BBEdit/Scripts/.
+	cp PeepOpen.applescript ~/Library/Application\ Support/BBEdit/Scripts/.
 	
 To add a shortcut key:
 
 	Window -> Palettes -> Scripts
 	Select PeepOpen and click Set Key ...
 	Enter a shortcut key combination (recommend Command + Option + T)
+
+## PeepOpen Preferences
+
+To help find the root of a project, you can add BBEdit Project Documents to the Project Root Pattern:
+	^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj|.*\.bbprojectd)$
+
 
 ## Credit
 
