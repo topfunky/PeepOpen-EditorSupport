@@ -14,7 +14,11 @@ tell application "BBEdit"
 		if (class of _firstTextWindow is project window) then
 			set _projectDocument to project document of _firstTextWindow
 			if (on disk of _projectDocument) then
-				set _theFile to file of _projectDocument
+				set _theProjectDir to file of _projectDocument
+				
+				tell application "Finder"
+					set _theFile to container of _theProjectDir
+				end tell
 			else
 				-- Shipping versions of BBEdit don't provide direct access
 				-- to the Instaproject root, so fake it by asking for
