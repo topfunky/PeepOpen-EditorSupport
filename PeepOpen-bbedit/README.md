@@ -1,17 +1,17 @@
 # PeepOpen-BBEdit
 
-AppleScript plugin to launch PeepCode for the current project 
+AppleScript plugin to launch PeepCode for the current project
 or document in BBEdit.
 
 ## Installation
 
-	mkdir -p ~/Library/Application\ Support/BBEdit/Scripts
-	cp PeepOpen.applescript ~/Library/Application\ Support/BBEdit/Scripts/.
-	
+	mkdir -p ~/Library/Application\ Support/BBEdit/Scripts/PeepOpen
+	cp PeepOpen.applescript ~/Library/Application\ Support/BBEdit/Scripts/PeepOpen/.
+
 To add a shortcut key:
 
 	Window -> Palettes -> Scripts
-	Select PeepOpen and click Set Key ...
+	Select PeepOpen -> Peep Open and click Set Key ...
 	Enter a shortcut key combination (recommend Command + Option + T)
 
 ## PeepOpen Preferences
