@@ -1,14 +1,16 @@
 # PeepOpen-BBEdit
 
-AppleScript plugin to launch PeepCode for the current project
-or document in BBEdit.
+AppleScript plugin to launch PeepCode for the current project or document in BBEdit or TextWrangler.
 
 ## Installation
 
 The install script will copy the PeepOpen.applescript to all of the following directories if they exist:
 
     ~/Library/Application Support/BBEdit/Scripts
+    ~/Library/Application Support/TextWrangler/Scripts
     ~/Dropbox/Application Support/BBEdit/Scripts
+    ~/Dropbox/Application Support/TextWrangler/Scripts
+    
 
 To add a shortcut key:
 

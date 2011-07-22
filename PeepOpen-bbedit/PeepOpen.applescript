@@ -1,4 +1,4 @@
--- PeepOpen for BBEdit
+-- PeepOpen for BBEdit/TextWrangler
 --
 -- Launches PeepOpen for either the current project directory, 
 -- first project file, or the current file
@@ -7,7 +7,9 @@
 -- 
 -- Copy script to either location:
 --   ~/Library/Application Support/BBEdit/Scripts
+--   ~/Library/Application Support/TextWrangler/Scripts
 --   ~/Dropbox/Application Support/BBEdit/Scripts
+--   ~/Dropbox/Application Support/TextWrangler/Scripts
 --
 -- To add a shortcut key:
 --
@@ -20,7 +22,7 @@
 -- Thanks to Bare Bones Software, Inc. for the initial AppleScript code.
 --
 -- Author:  Andrew Carter <ascarter@gmail.com>
--- Version: 0.1.1
+-- Version: 0.1.2
 --
 -- =============================================================================
 -- Copyright (c) 2011 Andrew Carter
@@ -46,39 +48,59 @@
 
 set _theFile to missing value
 
-tell application "BBEdit"
-	set _activeWindow to front window
-	if (class of _activeWindow is project window) then
-		set _projectDocument to project document of _activeWindow
-		
-		if ((count of items of _projectDocument) > 0) then
-			set _firstFileItem to item 1 of _projectDocument as alias
-		else
-			set _firstFileItem to file of document of _activeWindow as alias
-		end if
-		
-		if (on disk of _projectDocument) then
-			set _theProjectFile to file of _projectDocument as alias
-			
-			tell application "Finder"
-				set _theProjectDir to container of _theProjectFile
-				set _firstFileDir to container of _firstFileItem
-			end tell
-			
-			if (_firstFileDir is equal to _theProjectDir) then
-				-- Use project file
-				set _theFile to _theProjectDir as alias
-			else
-				-- External project file -> use first item to set context
-				set _theFile to _firstFileItem
-			end if
-		else
-			-- BBEdit doesn't provide direct access to the Instaproject root
-			-- Use the first node from the project list
-			set _theFile to _firstFileItem
-		end if
-	end if
+tell application "System Events"
+    set theApp to the name of current application
 end tell
+
+if (theApp is equal to "BBEdit" or theApp is equal to "TextWrangler") then
+    tell application theApp
+        set _activeWindow to front window
+        set _projectDocument to missing value
+    end tell
+        
+    if (theApp is equal to "BBEdit") then
+        tell application "BBEdit"
+            if (class of _activeWindow is project window) then
+                set _projectDocument to project document of _activeWindow
+
+                if ((count of items of _projectDocument) > 0) then
+                    set _firstFileItem to item 1 of _projectDocument as alias
+                else
+                    set _firstFileItem to file of document of _activeWindow as alias
+                end if
+                
+                if (on disk of _projectDocument) then
+                    set _theProjectFile to file of _projectDocument as alias
+                    
+                    tell application "Finder"
+                        set _theProjectDir to container of _theProjectFile
+                        set _firstFileDir to container of _firstFileItem
+                    end tell
+                    
+                    if (_firstFileDir is equal to _theProjectDir) then
+                        -- Use project file
+                        set _theFile to _theProjectDir as alias
+                    else
+                        -- External project file -> use first item to set context
+                        set _theFile to _firstFileItem
+                    end if
+                else
+                    -- BBEdit doesn't provide direct access to the Instaproject root
+                    -- Use the first node from the project list
+                    set _theFile to _firstFileItem
+                end if
+            end if
+        end tell
+    else if (theApp is equal to "TextWrangler") then
+        tell application "TextWrangler"
+            if (class of _activeWindow is disk browser window or class of _activeWindow is text window) then
+                if (on disk of document of _activeWindow) then
+                    set _theFile to file of document of _activeWindow
+                end if
+            end if
+        end tell
+    end if
+end if
 
 if _theFile is equal to missing value then
 	-- No base file found for reference
