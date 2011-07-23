@@ -4,13 +4,18 @@ AppleScript plugin to launch PeepCode for the current project or document in BBE
 
 ## Installation
 
-The install script will copy the PeepOpen.applescript to all of the following directories if they exist:
+The install will copy scripts for BBEdit or TextWrangler to the following directories:
 
     ~/Library/Application Support/BBEdit/Scripts
-    ~/Library/Application Support/TextWrangler/Scripts
     ~/Dropbox/Application Support/BBEdit/Scripts
+    ~/Library/Application Support/TextWrangler/Scripts
     ~/Dropbox/Application Support/TextWrangler/Scripts
-    
+
+To run the install:
+
+    rake all           # Install all scripts (BBEdit and TextWrangler)
+    rake bbedit        # Install BBEdit script
+    rake textwrangler  # Install TextWrangler script
 
 To add a shortcut key:
 
