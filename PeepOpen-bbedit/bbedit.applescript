@@ -49,6 +49,17 @@ on urlencode(theURL)
     do shell script "/usr/bin/ruby -e '" & theScript & "' " & quoted form of theURL
 end urlencode
 
+on isAppRunning(appName)
+	tell application "System Events" to (name of processes) contains appName
+end isAppRunning
+
+-- Check to see if PeepOpen is installed
+if not isAppRunning("PeepOpen") of me then
+	beep
+	display alert "PeepOpen is not running"
+	return
+end if
+
 set theFile to missing value
 
 tell application "BBEdit"
