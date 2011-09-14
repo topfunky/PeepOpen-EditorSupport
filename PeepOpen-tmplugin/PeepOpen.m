@@ -53,8 +53,10 @@ static PeepOpen *po;
   else if ([[currentDocument valueForKey:@"filename"] length] > 0) {
 		projectDir = [currentDocument valueForKey:@"filename"];
   }
-  
-	NSString *projectURLString = [NSString stringWithFormat:@"peepopen://%@?editor=TextMate", projectDir];
+    
+    
+    NSString *projectURLString = [NSString stringWithFormat:@"peepopen://%@?editor=TextMate", 
+        [projectDir stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	NSURL *url = [NSURL URLWithString:projectURLString];
 	NSLog(@"PeepOpen: Opening URL %@", [url absoluteString]);
 	[[NSWorkspace sharedWorkspace] openURL:url];
