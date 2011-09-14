@@ -42,9 +42,12 @@ static PeepOpen *po;
 
   if (project != NULL) {
     if (!project->isScratchProject && [project->rootItems count] > 0) {
+      // Pull the project directory from the first root item
       NSDictionary *firstItem = [project->rootItems objectAtIndex:0];
       if ([project->rootItems count] == 1) {
-        projectDir = [firstItem valueForKey:@"sourceDirectory"];
+          projectDir = [firstItem valueForKey:@"sourceDirectory"];
+      } else {
+          projectDir = [[firstItem valueForKey:@"sourceDirectory"] stringByDeletingLastPathComponent];
       }
     }
     if (NULL == projectDir)
