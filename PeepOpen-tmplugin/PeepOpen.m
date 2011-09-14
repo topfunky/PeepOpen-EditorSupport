@@ -3,7 +3,7 @@
 //  PeepOpen
 //
 //  Created by Pieter Noordhuis on 6/2/10.
-//
+//  Updated by Philip Schalm on 13/9/11.
 
 #import "PeepOpen.h"
 
@@ -27,7 +27,7 @@ static PeepOpen *po;
 @implementation OakProjectController (PeepOpen)
 - (void)goToFile:(id)sender
 {
-	NSString *projectDir;
+  NSString *projectDir = NULL;
   OakProjectController *project = NULL;
 
   // First try to find a window with a project and get the projectDirectory
@@ -41,7 +41,14 @@ static PeepOpen *po;
   }
 
   if (project != NULL) {
-    projectDir =  [project projectDirectory];
+    if (!project->isScratchProject && [project->rootItems count] > 0) {
+      NSDictionary *firstItem = [project->rootItems objectAtIndex:0];
+      if ([project->rootItems count] == 1) {
+        projectDir = [firstItem valueForKey:@"sourceDirectory"];
+      }
+    }
+    if (NULL == projectDir)
+      projectDir =  [project projectDirectory];
   } 
   else if ([[currentDocument valueForKey:@"filename"] length] > 0) {
 		projectDir = [currentDocument valueForKey:@"filename"];
