@@ -17,13 +17,30 @@ To run the install:
     rake bbedit        # Install BBEdit script
     rake textwrangler  # Install TextWrangler script
 
+## Installation
+
+	mkdir -p ~/Library/Application\ Support/BBEdit/Scripts/PeepOpen
+	cp PeepOpen.applescript ~/Library/Application\ Support/BBEdit/Scripts/PeepOpen/.
+
 To add a shortcut key:
 
 	Window -> Palettes -> Scripts
+
 	Select PeepOpen and click Set Key ...
 	Enter a shortcut key combination (recommend Command + Option + T)
 
 ## Credits
+=======
+	Select PeepOpen -> Peep Open and click Set Key ...
+	Enter a shortcut key combination (recommend Command + Option + T)
+
+## PeepOpen Preferences
+
+To help find the root of a project, you can add BBEdit Project Documents to the Project Root Pattern:
+	^(\.git|\.hg|Rakefile|Makefile|README\.?.*|build\.xml|.*\.xcodeproj|.*\.bbprojectd)$
+
+
+## Credit
 
 Thanks to Bare Bones Software, Inc. for the initial AppleScript code.
 
